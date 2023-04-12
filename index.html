@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function enviar() {
+            let dados = document.getElementById("dados").value;
+            console.log("Enviando dados: " + dados);
+
+            fetch("http://localhost:3000/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ dados })
+            })
+                .then(function (response) {
+                    console.log("Dados enviados com sucesso!");
+                    return response.json();
+                })
+                .catch(function (error) {
+                    console.error("Erro ao enviar dados: " + error);
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="text" id="dados">
+    <button onclick="enviar()">Enviar</button>
+</body>
+
+</html>
